@@ -47,10 +47,11 @@ class main(QMainWindow, Ui_MainWindow, Artifacts, UpAdd,HookKeyMose):
 
     def on_release(self, key: keyboard.KeyCode):
         """定义释放时候的响应"""
+
         try:
             if key == Key.f8:
                 if self.rb_filtrate.isChecked() == True:
-                    if self.art_on==False:
+                    if self.Art_on==False:
                         self.showMinimized()
                     # 更新主词条列表
                     self.on_lock_condition_main =[item.text() for item in self.condition_main_cbs if item.isChecked()==True]
@@ -61,7 +62,6 @@ class main(QMainWindow, Ui_MainWindow, Artifacts, UpAdd,HookKeyMose):
                     self.issancitiao = self.cb_set_four.isChecked()  # 3词条 也算多满足一个
                     self.isbumanzu = self.cb_unlock.isChecked()  # 是否解锁
                     self.Art_on = not self.Art_on
-
                     self.click_on = False
                     print("筛选运行:", self.Art_on)
 
@@ -71,8 +71,8 @@ class main(QMainWindow, Ui_MainWindow, Artifacts, UpAdd,HookKeyMose):
                     self.click_on = not self.click_on
                     self.Art_on = False
 
-        except:
-            pass
+        except Exception as err:
+            print(err)
 
     def set_ui(self):
         pass

@@ -1,0 +1,35 @@
+[ {
+    "dpi": [1920,1080],
+    "art_info_pos": [1317,96,278,538],
+    "art_start_pos":[320,938],
+    "art_stop_pos": [320,40],
+    "art_step_pos": [149,176],
+    "art_fist_post": [177,198],
+    "lock_pos": [ 1715,403,79,85],
+    "img_lock": "img\\lock_1920x1080.bmp",
+    "confidence": 0.9,
+    "quick_drop": [1743,767],
+    "upadd_bt": [1715,1020],
+    "info": [130,155],
+    "upadd": [131,225]
+  },
+  {
+    "dpi":[2560,1440],
+    "art_info_pos": [1770,129,388,722],
+    "art_start_pos":[432,1230],
+    "art_stop_pos": [430,32],
+    "art_step_pos": [197,236],
+    "art_fist_post": [233,247],
+    "lock_pos": [ 2280, 540, 109, 101],
+    "img_lock": "img\\lock_2560x1440.bmp",
+    "confidence": 0.9,
+    "quick_drop": [2325,1022],
+    "upadd_bt": [2306,1365],
+    "info": [177,203],
+    "upadd": [177,299]
+  }
+
+
+]
+
+

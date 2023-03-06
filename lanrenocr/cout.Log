@@ -1,0 +1,49 @@
+e[1me[35m--- Running analysis [ir_graph_build_pass]e[0m
+e[1me[35m--- Running analysis [ir_graph_clean_pass]e[0m
+e[1me[35m--- Running analysis [ir_analysis_pass]e[0m
+e[32m--- Running IR pass [simplify_with_basic_ops_pass]e[0m
+e[32m--- Running IR pass [layer_norm_fuse_pass]e[0m
+e[37m---    Fused 0 subgraphs into layer_norm op.e[0m
+e[32m--- Running IR pass [attention_lstm_fuse_pass]e[0m
+e[32m--- Running IR pass [seqconv_eltadd_relu_fuse_pass]e[0m
+e[32m--- Running IR pass [seqpool_cvm_concat_fuse_pass]e[0m
+e[32m--- Running IR pass [mul_lstm_fuse_pass]e[0m
+e[32m--- Running IR pass [fc_gru_fuse_pass]e[0m
+e[37m---    fused 0 pairs of fc gru patternse[0m
+e[32m--- Running IR pass [mul_gru_fuse_pass]e[0m
+e[32m--- Running IR pass [seq_concat_fc_fuse_pass]e[0m
+e[32m--- Running IR pass [squeeze2_matmul_fuse_pass]e[0m
+e[32m--- Running IR pass [reshape2_matmul_fuse_pass]e[0m
+e[32m--- Running IR pass [flatten2_matmul_fuse_pass]e[0m
+e[32m--- Running IR pass [map_matmul_v2_to_mul_pass]e[0m
+e[32m--- Running IR pass [map_matmul_v2_to_matmul_pass]e[0m
+e[32m--- Running IR pass [map_matmul_to_mul_pass]e[0m
+e[32m--- Running IR pass [fc_fuse_pass]e[0m
+e[32m--- Running IR pass [repeated_fc_relu_fuse_pass]e[0m
+e[32m--- Running IR pass [squared_mat_sub_fuse_pass]e[0m
+e[32m--- Running IR pass [conv_bn_fuse_pass]e[0m
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+I0417 08:21:06.508116  4828 fuse_pass_base.cc:57] ---  detected 33 subgraphs
+e[32m--- Running IR pass [conv_eltwiseadd_bn_fuse_pass]e[0m
+e[32m--- Running IR pass [conv_transpose_bn_fuse_pass]e[0m
+e[32m--- Running IR pass [conv_transpose_eltwiseadd_bn_fuse_pass]e[0m
+I0417 08:21:06.522080  4828 fuse_pass_base.cc:57] ---  detected 1 subgraphs
+e[32m--- Running IR pass [is_test_pass]e[0m
+e[32m--- Running IR pass [runtime_context_cache_pass]e[0m
+e[1me[35m--- Running analysis [ir_params_sync_among_devices_pass]e[0m
+e[1me[35m--- Running analysis [adjust_cudnn_workspace_size_pass]e[0m
+e[1me[35m--- Running analysis [inference_op_replace_pass]e[0m
+e[1me[35m--- Running analysis [memory_optimize_pass]e[0m
+I0417 08:21:06.536074  4828 memory_optimize_pass.cc:216] Cluster name : conv2d_185.tmp_0  size: 1382400
+I0417 08:21:06.536074  4828 memory_optimize_pass.cc:216] Cluster name : batch_norm_31.tmp_3  size: 29491200
+I0417 08:21:06.536074  4828 memory_optimize_pass.cc:216] Cluster name : relu_2.tmp_0  size: 29491200
+I0417 08:21:06.536074  4828 memory_optimize_pass.cc:216] Cluster name : conv2d_182.tmp_0  size: 22118400
+I0417 08:21:06.536074  4828 memory_optimize_pass.cc:216] Cluster name : x  size: 11059200
+I0417 08:21:06.536074  4828 memory_optimize_pass.cc:216] Cluster name : conv2d_186.tmp_0  size: 5529600
+I0417 08:21:06.536074  4828 memory_optimize_pass.cc:216] Cluster name : batch_norm_28.tmp_3  size: 7372800
+I0417 08:21:06.536074  4828 memory_optimize_pass.cc:216] Cluster name : elementwise_add_4  size: 576000
+I0417 08:21:06.536074  4828 memory_optimize_pass.cc:216] Cluster name : conv2d_183.tmp_0  size: 86400
+e[1me[35m--- Running analysis [ir_graph_to_program_pass]e[0m
+I0417 08:21:06.617825  4828 analysis_predictor.cc:717] ======= optimize end =======
+I0417 08:21:06.617825  4828 naive_executor.cc:98] ---  skip [feed], feed -> x
+I0417 08:21:06.620846  4828 naive_executor.cc:98] ---  skip [save_infer_model/scale_0.tmp_1], fetch -> fetch

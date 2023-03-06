@@ -21,6 +21,7 @@ class main(QMainWindow, Ui_MainWindow, Artifacts, UpAdd,HookKeyMose):
         self.set_ui()
         self.setupUi(self)
         self.setWindowTitle('懒人圣遗物强化助手')  # 标题
+        self.setWindowIcon(QIcon("logo.ico"))
         self.setWindowFlags(
             Qt.WindowMaximizeButtonHint | Qt.WindowMinimizeButtonHint | Qt.WindowCloseButtonHint | Qt.WindowStaysOnTopHint | Qt.Widget)  # 风格
         # self.setAttribute(Qt.WA_TranslucentBackground)  # 设置窗口背景透明
@@ -49,6 +50,8 @@ class main(QMainWindow, Ui_MainWindow, Artifacts, UpAdd,HookKeyMose):
         try:
             if key == Key.f8:
                 if self.rb_filtrate.isChecked() == True:
+                    if self.art_on==False:
+                        self.showMinimized()
                     # 更新主词条列表
                     self.on_lock_condition_main =[item.text() for item in self.condition_main_cbs if item.isChecked()==True]
                     print("主词条条件:",self.on_lock_condition)
@@ -58,11 +61,16 @@ class main(QMainWindow, Ui_MainWindow, Artifacts, UpAdd,HookKeyMose):
                     self.issancitiao = self.cb_set_four.isChecked()  # 3词条 也算多满足一个
                     self.isbumanzu = self.cb_unlock.isChecked()  # 是否解锁
                     self.Art_on = not self.Art_on
+
                     self.click_on = False
                     print("筛选运行:", self.Art_on)
+
                 else:
+                    if self.click_on == False:
+                        self.showMinimized()
                     self.click_on = not self.click_on
                     self.Art_on = False
+
         except:
             pass
 

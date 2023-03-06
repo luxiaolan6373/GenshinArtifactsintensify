@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <widget class="QGroupBox" name="groupBox_2">
       <property name="title">
-       <string>主词条(满足其中一个条件)</string>
+       <string>主词条(满足任意一个条件,会自动过滤不存在的)</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -30,7 +30,7 @@
        <item row="1" column="2">
         <widget class="QCheckBox" name="cb_wulishanghai">
          <property name="text">
-          <string>物理伤害%</string>
+          <string>物理伤害</string>
          </property>
         </widget>
        </item>
@@ -57,7 +57,10 @@
        <item row="4" column="1">
         <widget class="QCheckBox" name="cb_caoyuansu">
          <property name="text">
-          <string>草元素伤害%</string>
+          <string>草元素伤害</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -66,47 +69,65 @@
          <property name="text">
           <string>元素充能</string>
          </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item row="4" column="0">
         <widget class="QCheckBox" name="cb_shengingzhibaifenbi">
          <property name="text">
-          <string>生命值%</string>
+          <string>生命值</string>
          </property>
         </widget>
        </item>
        <item row="0" column="1">
         <widget class="QCheckBox" name="cb_huoyuansu">
          <property name="text">
-          <string>火元素伤害%</string>
+          <string>火元素伤害</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
        <item row="2" column="1">
         <widget class="QCheckBox" name="cb_bingyuansu">
          <property name="text">
-          <string>冰元素伤害%</string>
+          <string>冰元素伤害</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
        <item row="3" column="1">
         <widget class="QCheckBox" name="c_fengyuansu">
          <property name="text">
-          <string>风元素伤害%</string>
+          <string>风元素伤害</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
        <item row="5" column="1">
         <widget class="QCheckBox" name="cb_yanyuansu">
          <property name="text">
-          <string>岩元素伤害%</string>
+          <string>岩元素伤害</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
        <item row="1" column="1">
         <widget class="QCheckBox" name="cb_shuiyuansu">
          <property name="text">
-          <string>水元素伤害%</string>
+          <string>水元素伤害</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -115,26 +136,32 @@
          <property name="text">
           <string>元素精通</string>
          </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
         </widget>
        </item>
        <item row="2" column="0">
         <widget class="QCheckBox" name="cb_gongjlibaifenbi">
          <property name="text">
-          <string>攻击力%</string>
+          <string>攻击力</string>
          </property>
         </widget>
        </item>
        <item row="3" column="0">
         <widget class="QCheckBox" name="cb_fangyulibaifenbi">
          <property name="text">
-          <string>防御力%</string>
+          <string>防御力</string>
          </property>
         </widget>
        </item>
        <item row="0" column="2">
         <widget class="QCheckBox" name="cb_leiyuansu">
          <property name="text">
-          <string>雷元素伤害%</string>
+          <string>雷元素伤害</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -301,7 +328,7 @@
           <bool>true</bool>
          </property>
          <property name="text">
-          <string>按F8开始</string>
+          <string>按F8开始/结束</string>
          </property>
         </widget>
        </item>

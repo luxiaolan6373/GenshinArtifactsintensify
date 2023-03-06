@@ -33,7 +33,7 @@ class main(QMainWindow, Ui_MainWindow, Artifacts, UpAdd,HookKeyMose):
                              self.cb_fangyulibaifenbi, self.cb_zhiliao, self.cb_yuansujingtong,self.cb_wulishanghai
                              ]
         self.condition_cbs = [self.cb_baojilv_f, self.cb_baojishanghai_f, self.cb_gongjlibaifenbi_f, self.cb_gongjili_f,
-                             self.cb_shengingzhibaifenbi_f, self.cb_shengmingzhi, self.cb_yuansuchongneng_f,
+                             self.cb_shengingzhibaifenbi_f, self.cb_shengmingzhi_f, self.cb_yuansuchongneng_f,
                              self.cb_fangyulibaifenbi_f,  self.cb_fangyuli_f, self.cb_yuansujingtong_f
                              ]
         self.t1 = threading.Thread(target=self.run)

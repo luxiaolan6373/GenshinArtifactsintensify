@@ -56,93 +56,96 @@ class Artifacts(LanRenOcr):
         zhucitiao=False
         #主词条条件
         #符合主词条其中一条的就算ok不符合的 也不需要看副词条了 但是要排除 一些部位
-        if len(self.on_lock_condition_main)==0:#如果没有主词条的条件,就直接符合
-            zhucitiao = True
-        for cond in self.on_lock_condition_main:
-            if d[1] in ["生之花", "死之羽"]:
+        try:
+            if len(self.on_lock_condition_main)==0:#如果没有主词条的条件,就直接符合
                 zhucitiao = True
-                break
-            if d[1] == "时之沙":#部位在2号位
-                # 如果条件中有这几个条件则进行判断,,如果没有则一律放行
-                if cond in ["攻击力", "元素精通", "元素充能", "生命值", "防御力"]:
-                    if d[2].find(cond) != -1:#主词条在3号位
-                        zhucitiao = True
-                        break
-
-            elif d[1] == "空之杯":  # 部位在2号位
-                print("空之杯",cond)
-                # 如果条件中有这几个条件则进行判断,,如果没有则一律放行
-                if cond in ["攻击力", "元素精通", "生命值", "防御力","火元素伤害","水元素伤害",
-                            "冰元素伤害","雷元素伤害","草元素伤害","风元素伤害","岩元素伤害","物理伤害"]:
-                    if d[2].find(cond) != -1:  # 主词条在3号位
-                        zhucitiao = True
-                        break
-            elif d[1] == "理之冠":  # 部位在2号位
-                # 如果条件中有这几个条件则进行判断,,如果没有则一律放行
-                if cond in ["攻击力", "元素精通", "生命值", "防御力", "暴击率", "暴击伤害", "治疗"]:
-                    if d[2].find(cond) != -1:  # 主词条在3号位
-                        zhucitiao = True
-                        break
-                else:
+            for cond in self.on_lock_condition_main:
+                if d[1] in ["生之花", "死之羽"]:
                     zhucitiao = True
                     break
+                if d[1] == "时之沙":#部位在2号位
+                    # 如果条件中有这几个条件则进行判断,,如果没有则一律放行
+                    if cond in ["攻击力", "元素精通", "元素充能", "生命值", "防御力"]:
+                        if d[2].find(cond) != -1:#主词条在3号位
+                            zhucitiao = True
+                            break
+
+                elif d[1] == "空之杯":  # 部位在2号位
+                    print("空之杯",cond)
+                    # 如果条件中有这几个条件则进行判断,,如果没有则一律放行
+                    if cond in ["攻击力", "元素精通", "生命值", "防御力","火元素伤害","水元素伤害",
+                                "冰元素伤害","雷元素伤害","草元素伤害","风元素伤害","岩元素伤害","物理伤害"]:
+                        if d[2].find(cond) != -1:  # 主词条在3号位
+                            zhucitiao = True
+                            break
+                elif d[1] == "理之冠":  # 部位在2号位
+                    # 如果条件中有这几个条件则进行判断,,如果没有则一律放行
+                    if cond in ["攻击力", "元素精通", "生命值", "防御力", "暴击率", "暴击伤害", "治疗"]:
+                        if d[2].find(cond) != -1:  # 主词条在3号位
+                            zhucitiao = True
+                            break
+                    else:
+                        zhucitiao = True
+                        break
 
 
 
-        if zhucitiao==True:
-            for cond in self.on_lock_condition:
-                for f in d:
-                    if f.find(cond) != -1:
-                        if f.find("件套")==-1:
-                            if cond[-1]==("%"):
-                                if f[-1]==("%"):
-                                    ok_condition += 1
-                                    continue
-                            else:
-                                if f[-1]!=("%"):
-                                    ok_condition += 1
-                                    continue
+            if zhucitiao==True:
+                for cond in self.on_lock_condition:
+                    for f in d:
+                        if f.find(cond) != -1:
+                            if f.find("件套")==-1:
+                                if cond[-1]==("%"):
+                                    if f[-1]==("%"):
+                                        ok_condition += 1
+                                        continue
+                                else:
+                                    if f[-1]!=("%"):
+                                        ok_condition += 1
+                                        continue
 
 
-                            ok_condition += 1
+                                ok_condition += 1
 
-            if self.isshaoyige == False:
-                if ok_condition>=len(self.on_lock_condition) or  (ok_condition>=len(self.on_lock_condition)-1 and cound_citiao==4 and self.issancitiao == True):
-                    '2280,540,2388,640,宽高(109,101)'
-                    if pyautogui.locateCenterOnScreen(self.imgKey, region=self.key_pos, confidence=self.confidence)==None:
-                        pyautogui.moveTo(self.key_pos[0]+self.key_pos[2]//2, self.key_pos[1]+self.key_pos[3]//2)
-                        pyautogui.mouseDown()
-                        pyautogui.mouseUp()
-                        time.sleep(0.2)
-                elif self.isbumanzu==True:#解锁
-                    if pyautogui.locateCenterOnScreen(self.imgKey, region=self.key_pos, confidence=self.confidence)!=None:
-                        pyautogui.moveTo(self.key_pos[0]+self.key_pos[2]//2, self.key_pos[1]+self.key_pos[3]//2)
-                        pyautogui.mouseDown()
-                        pyautogui.mouseUp()
-                        time.sleep(0.2)
+                if self.isshaoyige == False:
+                    if ok_condition>=len(self.on_lock_condition) or  (ok_condition>=len(self.on_lock_condition)-1 and cound_citiao==4 and self.issancitiao == True):
+                        '2280,540,2388,640,宽高(109,101)'
+                        if pyautogui.locateCenterOnScreen(self.imgKey, region=self.key_pos, confidence=self.confidence)==None:
+                            pyautogui.moveTo(self.key_pos[0]+self.key_pos[2]//2, self.key_pos[1]+self.key_pos[3]//2)
+                            pyautogui.mouseDown()
+                            pyautogui.mouseUp()
+                            time.sleep(0.2)
+                    elif self.isbumanzu==True:#解锁
+                        if pyautogui.locateCenterOnScreen(self.imgKey, region=self.key_pos, confidence=self.confidence)!=None:
+                            pyautogui.moveTo(self.key_pos[0]+self.key_pos[2]//2, self.key_pos[1]+self.key_pos[3]//2)
+                            pyautogui.mouseDown()
+                            pyautogui.mouseUp()
+                            time.sleep(0.2)
 
+                else:
+                    # 少1个也算满足 但是必须大于0个条件
+                    if ok_condition>=len(self.on_lock_condition)-1  and ok_condition>0 :
+                        '2280,540,2388,640,宽高(109,101)'
+                        if pyautogui.locateCenterOnScreen(self.imgKey, region=self.key_pos, confidence=self.confidence)==None:
+                            pyautogui.moveTo(self.key_pos[0]+self.key_pos[2]//2, self.key_pos[1]+self.key_pos[3]//2)
+                            pyautogui.mouseDown()
+                            pyautogui.mouseUp()
+                            time.sleep(0.2)
+                    elif self.isbumanzu==True:#解锁
+                        if pyautogui.locateCenterOnScreen(self.imgKey, region=self.key_pos, confidence=self.confidence)!=None:
+                            pyautogui.moveTo(self.key_pos[0]+self.key_pos[2]//2, self.key_pos[1]+self.key_pos[3]//2)
+                            pyautogui.mouseDown()
+                            pyautogui.mouseUp()
+                            time.sleep(0.2)
             else:
-                # 少1个也算满足 但是必须大于0个条件
-                if ok_condition>=len(self.on_lock_condition)-1  and ok_condition>0 :
-                    '2280,540,2388,640,宽高(109,101)'
-                    if pyautogui.locateCenterOnScreen(self.imgKey, region=self.key_pos, confidence=self.confidence)==None:
-                        pyautogui.moveTo(self.key_pos[0]+self.key_pos[2]//2, self.key_pos[1]+self.key_pos[3]//2)
+                if self.isbumanzu == True:  # 解锁
+                    if pyautogui.locateCenterOnScreen(self.imgKey, region=self.key_pos, confidence=self.confidence) != None:
+                        pyautogui.moveTo(self.key_pos[0] + self.key_pos[2] // 2, self.key_pos[1] + self.key_pos[3] // 2)
                         pyautogui.mouseDown()
                         pyautogui.mouseUp()
                         time.sleep(0.2)
-                elif self.isbumanzu==True:#解锁
-                    if pyautogui.locateCenterOnScreen(self.imgKey, region=self.key_pos, confidence=self.confidence)!=None:
-                        pyautogui.moveTo(self.key_pos[0]+self.key_pos[2]//2, self.key_pos[1]+self.key_pos[3]//2)
-                        pyautogui.mouseDown()
-                        pyautogui.mouseUp()
-                        time.sleep(0.2)
-        else:
-            if self.isbumanzu == True:  # 解锁
-                if pyautogui.locateCenterOnScreen(self.imgKey, region=self.key_pos, confidence=self.confidence) != None:
-                    pyautogui.moveTo(self.key_pos[0] + self.key_pos[2] // 2, self.key_pos[1] + self.key_pos[3] // 2)
-                    pyautogui.mouseDown()
-                    pyautogui.mouseUp()
-                    time.sleep(0.2)
+        except Exception as err:
+            print(err)
 
     def set_Art_info_pos(self):
         with open("img\\package.json")as f:

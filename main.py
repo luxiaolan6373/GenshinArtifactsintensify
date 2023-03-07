@@ -10,7 +10,8 @@ from ui.main import Ui_MainWindow
 from pynput import keyboard
 from pynput.keyboard import Key
 import threading
-
+class MySignal(QObject):  # 自定义信号类
+    sg = pyqtSignal(bool)
 class main(QMainWindow, Ui_MainWindow, Artifacts, UpAdd,HookKeyMose):
     def __init__(self):
         # 继承父类
@@ -37,6 +38,8 @@ class main(QMainWindow, Ui_MainWindow, Artifacts, UpAdd,HookKeyMose):
                              self.cb_shengingzhibaifenbi_f, self.cb_shengmingzhi_f, self.cb_yuansuchongneng_f,
                              self.cb_fangyulibaifenbi_f,  self.cb_fangyuli_f, self.cb_yuansujingtong_f
                              ]
+        self.sg=MySignal()
+        self.sg.sg.connect(self.showMinimized_sg)
         self.t1 = threading.Thread(target=self.run)
         self.t2 = threading.Thread(target=self.run_upadd)
         self.t1.setDaemon(True)
@@ -44,7 +47,11 @@ class main(QMainWindow, Ui_MainWindow, Artifacts, UpAdd,HookKeyMose):
         self.t1.start()
         self.t2.start()
 
-
+    def showMinimized_sg(self,min):
+        if min==True:
+            self.showMinimized()
+        else:
+            self.showNormal()
     def on_release(self, key: keyboard.KeyCode):
         """定义释放时候的响应"""
 
@@ -52,7 +59,9 @@ class main(QMainWindow, Ui_MainWindow, Artifacts, UpAdd,HookKeyMose):
             if key == Key.f8:
                 if self.rb_filtrate.isChecked() == True:
                     if self.Art_on==False:
-                        self.showMinimized()
+                        self.sg.sg.emit(True)
+                    else:
+                        self.sg.sg.emit(False)
                     # 更新主词条列表
                     self.on_lock_condition_main =[item.text() for item in self.condition_main_cbs if item.isChecked()==True]
                     print("主词条条件:",self.on_lock_condition)
@@ -67,7 +76,10 @@ class main(QMainWindow, Ui_MainWindow, Artifacts, UpAdd,HookKeyMose):
 
                 else:
                     if self.click_on == False:
-                        self.showMinimized()
+                        self.sg.sg.emit(True)
+                    else:
+                        self.sg.sg.emit(False)
+
                     self.click_on = not self.click_on
                     self.Art_on = False
 

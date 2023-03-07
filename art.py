@@ -43,9 +43,9 @@ class Artifacts(LanRenOcr):
             if item["ttxt"].find("+")!=-1:
                 cound_citiao+=1
             if item["ttxt"].find("★")!=-1:
-                if len(item["ttxt"])<5:
+                if len(item["ttxt"])<4:
                     self.Art_on = False
-
+                    print("<5",d)
                     return []
             d.append(item["ttxt"])
         print(cound_citiao,d)
@@ -178,6 +178,7 @@ class Artifacts(LanRenOcr):
 
     def run(self):
         while True:
+
             if self.Art_on==False:
                 time.sleep(0.5)
                 continue
@@ -195,13 +196,14 @@ class Artifacts(LanRenOcr):
                     d=self.one_sim()
 
                     if d==False:
+                        print("d==False", d)
                         self.Art_on = False
                         self.art_list = []
                         continue
                     else:
                         if len(self.art_list)>0:
                             if self.art_list[-1]==d:
-
+                                print("self.art_list[-1]==d", d,self.art_list[-1])
                                 self.Art_on=False
                                 self.art_list = []
                                 continue
